@@ -1,0 +1,34 @@
+{
+  "name": "soumns-vtest-v3",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/qs": "^6.9.7",
+    "@vueuse/core": "^8.6.0",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "element-plus": "^2.2.0",
+    "express": "^4.18.1",
+    "pinia": "^2.0.14",
+    "pinia-persistedstate-plugin": "^0.1.0",
+    "qs": "^6.10.3",
+    "vue": "^3.2.25",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
+    "@types/node": "^17.0.35",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.5.4",
+    "unplugin-auto-import": "^0.7.2",
+    "unplugin-vue-components": "^0.19.5",
+    "vite": "^2.9.9",
+    "vue-tsc": "^0.34.7"
+  }
+}
