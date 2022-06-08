@@ -5,12 +5,22 @@ import type { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'home' },
+    redirect: { name: 'todoListLogin' },
   },
   {
     path: '/home',
     name: 'home',
     component: () => import('@/views/home/index.vue'),
+  },
+  {
+    path: '/todoListLogin',
+    name: 'todoListLogin',
+    component: () => import('@/views/todoList/login.vue'),
+  },
+  {
+    path: '/todoList',
+    name: 'todoList',
+    component: () => import('@/views/todoList/index.vue'),
   },
 ];
 

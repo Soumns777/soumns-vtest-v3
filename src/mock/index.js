@@ -21,7 +21,7 @@ app.use(express.json());
 //配置中间件解析post application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/getMock', (req, res) => {
+app.get('/api/login', (req, res) => {
   console.log(req.query, '-->get从前台获取的数据');
   res.send({
     status: 200,

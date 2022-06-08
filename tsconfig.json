@@ -14,8 +14,7 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true
   },

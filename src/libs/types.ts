@@ -6,12 +6,13 @@ export interface Result {
 
 // * 请求响应参数(包含data)
 export interface ResultData<T = any> extends Result {
+  [x: string]: any;
   data?: T;
 }
 
-export interface Login {
-  name: string;
-  age: number;
+export interface ILogin {
+  userName: string;
+  password: string;
 }
 
 export interface LoginRes {
