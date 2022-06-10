@@ -8,19 +8,19 @@ import { ElMessage } from 'element-plus';
 import { login } from '@/services/request';
 import { ILogin } from '@/libs/types';
 import { useRouter } from 'vue-router';
+import { $ref } from 'vue/macros';
+import md5 from 'js-md5';
 
-export interface ValidateFieldCallback {
-  (message: string, invalidFields?: ValidateFieldsError): void;
-}
+import { ResultData, LoginRes } from '@/libs/types';
 
 // 切换主题
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-const formSize = ref('default');
-const ruleFormRef = ref<FormInstance>();
+const formSize = $ref('default');
+const ruleFormRef = $ref<FormInstance>();
 const ruleForm: ILogin = reactive({
-  userName: 'Hello',
+  userName: 'admin',
   password: '123',
 });
 
@@ -53,10 +53,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       try {
         const res = await login({
           userName: ruleForm.userName,
-          password: ruleForm.password,
+          password: md5(ruleForm.password),
         });
 
-        console.log(res, '💙💛 submit data');
+        // get access_token
+        console.log(res.data?.access_token, '💙💛 access_token');
 
         if (res.status == '200') {
           ElMessage.success('登录成功!');
