@@ -1,21 +1,93 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import { Calendar, Search } from '@element-plus/icons-vue';
-import { $ref } from 'vue/macros';
+import { Calendar, Search, Delete } from '@element-plus/icons-vue';
+import { $$, $ref } from 'vue/macros';
+import { ElLoading, ElMessage, ElMessageBox } from 'element-plus';
+import useUser from '@/store/modules/login';
+import { storeToRefs } from 'pinia';
 
-const input2 = $ref(0);
+const store = useUser();
+const { tid, todoList } = storeToRefs(store);
+let input2 = $ref('');
+
+const changeInp = (): void => {
+  store.addTodo(input2);
+  input2 = '';
+  console.log(tid, todoList, '💙💛');
+};
+
+const delTodo = (id: number): void => {
+  ElMessageBox.confirm(
+    'proxy will permanently delete the file. Continue?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+      center: true,
+    }
+  )
+    .then(() => {
+      store.deleteTodo(id);
+
+      ElMessage({
+        type: 'success',
+        message: 'Delete completed',
+      });
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: 'Delete canceled',
+      });
+    });
+};
 </script>
 
 <template>
-  <div>
-    <el-input
-      v-model="input2"
-      class="w-50 m-2"
-      placeholder="Input something"
-      :prefix-icon="Search"
-      clearable
-    />
+  <div class="container">
+    <div class="container-inp">
+      <el-input
+        v-model="input2"
+        class="w-50 m-2"
+        placeholder="Input something"
+        :prefix-icon="Search"
+        clearable
+        @change="changeInp()"
+      />
+    </div>
+
+    <div class="container-content">
+      <ul>
+        <li v-for="(item, idx) in todoList" :key="idx">
+          <el-checkbox v-model="item.status" size="large" />
+          {{ item.content }}
+
+          <el-button
+            type="danger"
+            :icon="Delete"
+            circle
+            :style="{ marginLeft: '200px' }"
+            @click="delTodo(item.id)"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.container {
+  .container-inp {
+    width: 400px;
+  }
+
+  .container-content {
+    margin-top: 30px;
+
+    ul > li {
+      list-style: none;
+    }
+  }
+}
+</style>

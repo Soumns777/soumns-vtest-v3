@@ -1,4 +1,4 @@
-import useUser from '@/store/modules/user';
+import useUser from '@/store/modules/login';
 
 // 箭头函数返回对象写法
 const useStore = () => ({

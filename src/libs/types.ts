@@ -36,3 +36,17 @@ export interface LoginRes {
 //     access_token: '1eqwe',
 //   },
 // };
+
+export interface ITodo {
+  id: number;
+  content: string;
+  status: boolean;
+}
+
+export type ITodoList = ITodo[];
+
+export interface IPlogin {
+  user: ILogin;
+  todoList: ITodoList;
+  tid: number;
+}

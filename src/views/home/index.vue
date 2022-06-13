@@ -23,8 +23,8 @@ console.log(user, '💙💛 get-pinia');
 
 // 调用接口
 login({
-  name: 'iu',
-  age: 19,
+  userName: 'iu',
+  password: '19',
 }).then((res) => console.log(res, '💙💛 res data '));
 
 // 暗黑模式
