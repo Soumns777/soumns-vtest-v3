@@ -1,6 +1,9 @@
+import { AxiosCanceler } from './../libs/helper/axiosCancel';
 import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import NProgress from '@/libs/nprogress';
+
+const axiosCanceler = new AxiosCanceler();
 
 // 创建路由表
 const routes: RouteRecordRaw[] = [
@@ -34,7 +37,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   NProgress.start();
   // * 在跳转路由之前，清除所有的请求
-  // axiosCanceler.removeAllPending();
+
+  axiosCanceler.removeAllPending();
 
   // * 判断当前路由是否需要访问权限
   // if (!to.matched.some(record => record.meta.requiresAuth)) return next();
