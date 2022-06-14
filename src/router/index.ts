@@ -9,7 +9,7 @@ const axiosCanceler = new AxiosCanceler();
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'todoListLogin' },
+    redirect: { name: 'unocss' },
   },
   {
     path: '/home',
@@ -25,6 +25,11 @@ const routes: RouteRecordRaw[] = [
     path: '/todoList',
     name: 'todoList',
     component: () => import('@/views/todoList/index.vue'),
+  },
+  {
+    path: '/unocss',
+    name: 'unocss',
+    component: () => import('@/views/unocss/index.vue'),
   },
 ];
 

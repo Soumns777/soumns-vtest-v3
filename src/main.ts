@@ -4,6 +4,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'element-plus/dist/index.css'; // element css
 import { createPersistedState } from 'pinia-persistedstate-plugin';
 import App from './App.vue';
+import 'uno.css';
 
 import * as Icons from '@element-plus/icons-vue';
 
