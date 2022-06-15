@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { presetUno, presetAttributify, presetIcons } from 'unocss';
+import Inspector from 'vite-plugin-vue-inspector';
 import path from 'path';
 const pathSrc = path.resolve(__dirname, 'src');
 
@@ -15,14 +16,30 @@ export default defineConfig({
       reactivityTransform: true, // 可以支持 $ref 语法糖
     }),
     AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        'vue/macros',
+        '@vueuse/core',
+        'pinia',
+        '@vueuse/head',
+      ],
+      dts: 'src/auto-imports.d.ts',
       resolvers: [ElementPlusResolver()],
     }),
     Components({
+      // allow auto load markdown components under `./src/components/`
+      extensions: ['vue', 'md'],
+      // allow auto import and register components used in markdown
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      dts: 'src/components.d.ts',
       resolvers: [ElementPlusResolver()],
     }),
+
     Unocss({
       presets: [presetUno(), presetAttributify(), presetIcons()],
     }),
+    Inspector(),
   ],
   resolve: {
     alias: {

@@ -11,6 +11,7 @@
     "@types/axios": "^0.14.0",
     "@types/qs": "^6.9.7",
     "@vueuse/core": "^8.6.0",
+    "@vueuse/head": "^0.7.6",
     "async-validator": "^4.1.1",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
@@ -39,6 +40,7 @@
     "unplugin-auto-import": "^0.7.2",
     "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.9",
+    "vite-plugin-vue-inspector": "^1.0.1",
     "vue-tsc": "^0.34.7"
   }
 }

@@ -1,21 +1,15 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-
 import useStore from '@/store/index';
-import { storeToRefs } from 'pinia';
 import { useEverything } from '@/store/index';
-import { useDark, useToggle } from '@vueuse/core';
-
 import { login } from '@/services/request';
-
 console.log(useEverything().User, 'useEverything 💙💛');
 
 const store = useStore().User;
 
 // 异步调用
 store.changeName({
-  name: 'yoona',
-  age: 23,
+  userName: 'yoona',
+  password: '23',
 });
 
 const { user, firstName, nextName } = storeToRefs(store);

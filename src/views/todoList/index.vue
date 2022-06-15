@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
 import { Calendar, Search, Delete } from '@element-plus/icons-vue';
-import { $$, $ref } from 'vue/macros';
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus';
 import useUser from '@/store/modules/login';
-import { storeToRefs } from 'pinia';
 
 const store = useUser();
 const { tid, todoList } = storeToRefs(store);

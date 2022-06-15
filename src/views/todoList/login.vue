@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { useDark, useToggle } from '@vueuse/core';
 import type { FormInstance, FormRules } from 'element-plus';
 import { ValidateFieldsError } from 'async-validator';
 import { Sunny, Moon } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import { login } from '@/services/request';
 import { ILogin } from '@/libs/types';
-import { useRouter } from 'vue-router';
-import { $ref } from 'vue/macros';
 import md5 from 'js-md5';
 
 import { ResultData, LoginRes } from '@/libs/types';
