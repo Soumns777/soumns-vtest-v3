@@ -8,6 +8,7 @@ import { ILogin } from '@/libs/types';
 import md5 from 'js-md5';
 
 import { ResultData, LoginRes } from '@/libs/types';
+const router = useRouter();
 
 // 切换主题
 const isDark = useDark();
@@ -38,7 +39,6 @@ const rules = reactive<FormRules>({
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
   ],
 });
-const router = useRouter();
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
@@ -76,10 +76,9 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <template>
   <div class="container">
-    <div class="container-switch">
+    <div absolute right-0 top-6>
       <el-switch
         v-model="isDark"
-        class="mt-2"
         active-color="#2f2f2f"
         inactive-color="#f2f1f1"
         style="margin-left: 24px"
@@ -88,8 +87,14 @@ const resetForm = (formEl: FormInstance | undefined) => {
         :inactive-icon="Sunny"
       />
     </div>
-
-    <div class="container-login">
+    <!--  class="absolute top-50% left-50% translate-x--50% translate-y--50%" -->
+    <div
+      class="translate-x--50% translate-y--50%"
+      w="300px"
+      pos="absolute"
+      top="50%"
+      left="50%"
+    >
       <el-form
         ref="ruleFormRef"
         :model="ruleForm"
@@ -123,21 +128,13 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style scoped lang="scss">
 .container {
-  .container-switch {
-    position: absolute;
-    right: 8px;
-    top: 6px;
-  }
-
-  .container-login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // background-color: skyblue;
-    // width: 260px;
-    // height: 120px;我、
-    width: 300px;
-  }
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #eeeeee;
+  background-image: url('@/assets/uploads/login_bg.svg');
+  background-position: 50%;
+  background-size: 100% 100%;
+  background-size: cover;
 }
 </style>

@@ -1,5 +1,9 @@
 import { AxiosCanceler } from './../libs/helper/axiosCancel';
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import NProgress from '@/libs/nprogress';
 
@@ -9,7 +13,7 @@ const axiosCanceler = new AxiosCanceler();
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'unocss' },
+    redirect: { name: 'todoListLogin' },
   },
   {
     path: '/home',
@@ -34,7 +38,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(), // 采用HTML5模式,使用 history.pushState API
+  history: createWebHashHistory(), // 采用HTML5模式,使用 history.pushState API
   routes,
 });
 

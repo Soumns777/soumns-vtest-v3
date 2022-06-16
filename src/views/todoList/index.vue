@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { Calendar, Search, Delete } from '@element-plus/icons-vue';
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus';
-import useUser from '@/store/modules/login';
 
+import useUser from '@/store/modules/login';
 const store = useUser();
 const { tid, todoList } = storeToRefs(store);
 let input2 = $ref('');
@@ -43,10 +43,11 @@ const delTodo = (id: number): void => {
 
 <template>
   <div class="container">
-    <div class="container-inp">
+    <div w="400px">
       <el-input
         v-model="input2"
-        class="w-50 m-2"
+        w="50"
+        m="2"
         placeholder="Input something"
         :prefix-icon="Search"
         clearable
@@ -56,7 +57,7 @@ const delTodo = (id: number): void => {
 
     <div class="container-content">
       <ul>
-        <li v-for="(item, idx) in todoList" :key="idx">
+        <li v-for="(item, idx) in todoList" :key="idx" list="none">
           <el-checkbox v-model="item.status" size="large" />
           {{ item.content }}
 
@@ -72,19 +73,3 @@ const delTodo = (id: number): void => {
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.container {
-  .container-inp {
-    width: 400px;
-  }
-
-  .container-content {
-    margin-top: 30px;
-
-    ul > li {
-      list-style: none;
-    }
-  }
-}
-</style>
