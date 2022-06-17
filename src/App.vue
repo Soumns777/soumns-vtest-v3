@@ -1,14 +1,12 @@
-<script lang="ts" setup>
-import { reactive, ref } from 'vue';
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <router-view></router-view>
 </template>
 
 <style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+// }
 </style>

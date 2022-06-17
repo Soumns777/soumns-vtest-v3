@@ -39,7 +39,7 @@ export default defineConfig({
     Unocss({
       presets: [presetUno(), presetAttributify(), presetIcons()],
     }),
-    Inspector(),
+    // Inspector(),
   ],
   resolve: {
     alias: {

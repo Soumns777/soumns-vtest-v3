@@ -1,4 +1,4 @@
-@mixin children-page($image) {
+@mixin children-page() {
   position: fixed;
   z-index: 100;
   top: 0;
@@ -7,7 +7,6 @@
   right: 0;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: $image;
 }
 
 /* A02查看详情 完整按钮*/

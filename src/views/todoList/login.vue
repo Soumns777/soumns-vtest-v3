@@ -7,12 +7,7 @@ import { login } from '@/services/request';
 import { ILogin } from '@/libs/types';
 import md5 from 'js-md5';
 
-import { ResultData, LoginRes } from '@/libs/types';
 const router = useRouter();
-
-// 切换主题
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
 
 const formSize = $ref('default');
 const ruleFormRef = $ref<FormInstance>();
@@ -20,7 +15,6 @@ const ruleForm: ILogin = reactive({
   userName: 'admin',
   password: '123',
 });
-
 const rules = reactive<FormRules>({
   userName: [
     {
@@ -39,7 +33,6 @@ const rules = reactive<FormRules>({
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
   ],
 });
-
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate(async (valid, fields) => {
@@ -67,7 +60,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     }
   });
 };
-
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
@@ -75,66 +67,67 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <template>
-  <div class="container">
-    <div absolute right-0 top-6>
-      <el-switch
-        v-model="isDark"
-        active-color="#2f2f2f"
-        inactive-color="#f2f1f1"
-        style="margin-left: 24px"
-        inline-prompt
-        :active-icon="Moon"
-        :inactive-icon="Sunny"
-      />
-    </div>
-    <!--  class="absolute top-50% left-50% translate-x--50% translate-y--50%" -->
-    <div
-      class="translate-x--50% translate-y--50%"
-      w="300px"
-      pos="absolute"
-      top="50%"
-      left="50%"
-    >
-      <el-form
-        ref="ruleFormRef"
-        :model="ruleForm"
-        :rules="rules"
-        label-width="120px"
-        class="demo-ruleForm"
-        :size="formSize"
-        status-icon
+  <div class="container" p="t30px b80px l40px r40px">
+    <div class="container-login-content" p="l30px t-80px">
+      <div class="container-login-content-left">
+        <img src="@/assets/uploads/login_left0.png" alt="login" />
+      </div>
+
+      <!-- <div
+        class="translate-x--50% translate-y--50%"
+        w="300px"
+        pos="absolute"
+        top="50%"
+        left="50%"
       >
-        <el-form-item label="userName" prop="userName">
-          <el-input v-model="ruleForm.userName" />
-        </el-form-item>
+        <el-form
+          ref="ruleFormRef"
+          :model="ruleForm"
+          :rules="rules"
+          label-width="120px"
+          class="demo-ruleForm"
+          :size="formSize"
+          status-icon
+        >
+          <el-form-item label="userName" prop="userName">
+            <el-input v-model="ruleForm.userName" />
+          </el-form-item>
 
-        <el-form-item label="password" prop="password">
-          <el-input v-model="ruleForm.password" />
-        </el-form-item>
+          <el-form-item label="password" prop="password">
+            <el-input v-model="ruleForm.password" />
+          </el-form-item>
 
-        <el-form-item>
-          <el-button
-            size="large"
-            type="primary"
-            @click="submitForm(ruleFormRef)"
-            >Login</el-button
-          >
-          <!-- <el-button @click="resetForm(ruleFormRef)">Reset</el-button> -->
-        </el-form-item>
-      </el-form>
+          <el-form-item>
+            <el-button
+              size="large"
+              type="primary"
+              @click="submitForm(ruleFormRef)"
+              >Login</el-button
+            >
+            <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+          </el-form-item>
+        </el-form>
+      </div> -->
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .container {
-  height: 100%;
   min-width: 100vw;
   min-height: 100vh;
+
   background-color: #eeeeee;
   background-image: url('@/assets/uploads/login_bg.svg');
   background-position: 50%;
   background-size: 100% 100%;
-  background-size: cover;
+  box-sizing: border-box;
+  @include children-page();
+  .container-login-content {
+    width: 96%;
+    height: 94%;
+    // background-color: #ff62003a;
+    box-sizing: border-box;
+  }
 }
 </style>

@@ -13,7 +13,7 @@ const axiosCanceler = new AxiosCanceler();
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'testEnv' },
+    redirect: { name: 'todoListLogin' },
   },
   {
     path: '/home',
