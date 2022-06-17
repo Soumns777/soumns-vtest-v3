@@ -24,6 +24,7 @@ specifiers:
   pinia-plugin-persist: ^1.0.0
   qs: ^6.10.3
   sass: ^1.52.2
+  type-fest: ^2.13.1
   typescript: ^4.5.4
   unocss: ^0.39.0
   unplugin-auto-import: ^0.7.2
@@ -68,6 +69,7 @@ devDependencies:
   '@unocss/preset-uno': 0.39.0
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.34
   js-md5: 0.7.3
+  type-fest: 2.13.1
   typescript: 4.6.4
   unocss: 0.39.0_vite@2.9.9
   unplugin-auto-import: 0.7.2_lxcveaisskggeeuecpqedfol3i
@@ -2623,6 +2625,11 @@ packages:
   /totalist/3.0.0:
     resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==}
     engines: {node: '>=6'}
+    dev: true
+
+  /type-fest/2.13.1:
+    resolution: {integrity: sha512-hXYyrPFwETT2swFLHeoKtJrvSF/ftG/sA15/8nGaLuaDGfVAaq8DYFpu4yOyV4tzp082WqnTEoMsm3flKMI2FQ==}
+    engines: {node: '>=12.20'}
     dev: true
 
   /type-is/1.6.18:
