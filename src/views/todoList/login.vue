@@ -67,10 +67,21 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <template>
-  <div class="container" p="t30px b80px l40px r40px">
-    <div class="container-login-content" p="l30px t-80px">
-      <div class="container-login-content-left">
-        <img src="@/assets/uploads/login_left0.png" alt="login" />
+  <!--   bg="[url('@/assets/uploads/login_bg.svg')]" -->
+  <div class="container" p="30px" min-w-full min-h-full>
+    <div
+      class="container-login-content"
+      w="100%"
+      h="100%"
+      p="t140px l60px"
+      box="border"
+      rounded-10
+      flex
+      content-center
+      justify-center
+    >
+      <div class="container-login-content-left" w="787px" h="524px">
+        <img src="@/assets/uploads/login_left0.png" alt="login" w="100%" />
       </div>
 
       <!-- <div
@@ -114,20 +125,14 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <style scoped lang="scss">
 .container {
-  min-width: 100vw;
-  min-height: 100vh;
-
-  background-color: #eeeeee;
   background-image: url('@/assets/uploads/login_bg.svg');
-  background-position: 50%;
   background-size: 100% 100%;
   box-sizing: border-box;
+  background-color: #eeeeee;
   @include children-page();
-  .container-login-content {
-    width: 96%;
-    height: 94%;
-    // background-color: #ff62003a;
-    box-sizing: border-box;
+
+  .container-login-content-left {
+    background: #ff6100;
   }
 }
 </style>
