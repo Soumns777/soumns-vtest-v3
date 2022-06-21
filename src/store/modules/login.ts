@@ -28,7 +28,7 @@ const useUser = defineStore('User', {
       console.log('🌈 pinia响应式actions', this.user);
     },
 
-    addTodo(content: string) {
+    addTodo(content: string): void {
       const todo: ITodo = {
         id: this.tid,
         content: content,
@@ -40,9 +40,21 @@ const useUser = defineStore('User', {
       this.tid++;
     },
 
-    deleteTodo(tid: number) {
+    deleteTodo(tid: number): void {
       let idx = this.todoList.findIndex((item) => item.id == tid);
       this.todoList.splice(idx, 1);
+    },
+
+    sort(tid: number): void {
+      let idx = this.todoList.findIndex((item) => item.id == tid);
+      let content = this.todoList[idx].content;
+      this.todoList.splice(idx, 1);
+      this.tid++;
+      this.todoList.push({
+        id: this.tid,
+        content,
+        status: true,
+      });
     },
   },
 });

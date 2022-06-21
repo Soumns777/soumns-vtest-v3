@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus';
-import { ValidateFieldsError } from 'async-validator';
-import { Sunny, Moon } from '@element-plus/icons-vue';
+import SwitchDark from '@/components/switchDark/index.vue';
+import { User, Lock, CircleClose, UserFilled } from '@element-plus/icons-vue';
+
 import { ElMessage } from 'element-plus';
 import { login } from '@/services/request';
 import { ILogin } from '@/libs/types';
@@ -19,7 +20,7 @@ const rules = reactive<FormRules>({
   userName: [
     {
       required: true,
-      message: 'Please input Activity userName',
+      message: '请输入用户名',
       trigger: 'blur',
     },
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
@@ -27,7 +28,7 @@ const rules = reactive<FormRules>({
   password: [
     {
       required: true,
-      message: 'Please input Activity password',
+      message: '请输入账号密码',
       trigger: 'blur',
     },
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
@@ -68,62 +69,129 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <template>
   <!--   bg="[url('@/assets/uploads/login_bg.svg')]" -->
-  <div class="container" p="30px" min-w-full min-h-full>
+  <div class="container" p="30px" min-w-full min-h-full w="100%" h="100%">
+    <SwitchDark class="dark"></SwitchDark>
     <div
       class="container-login-content"
       w="100%"
       h="100%"
-      p="t140px l60px"
       box="border"
-      rounded-10
+      rounded-10px
+      p="r4% l30px"
       flex
-      content-center
-      justify-center
+      items-center
+      justify-around
     >
-      <div class="container-login-content-left" w="787px" h="524px">
+      <div class="container-login-content-left" w="800px">
         <img src="@/assets/uploads/login_left0.png" alt="login" w="100%" />
       </div>
 
-      <!-- <div
-        class="translate-x--50% translate-y--50%"
-        w="300px"
-        pos="absolute"
-        top="50%"
-        left="50%"
+      <div
+        class="container-login-content-form"
+        w="450px"
+        h="290px"
+        rounded-10px
+        bg="red"
+        p="50px 40px 45px"
+        relative
       >
+        <div
+          class="form-img"
+          w="202px"
+          h="108px"
+          absolute
+          top="-55px"
+          right="-75px"
+        >
+          <img src="@/assets/uploads/form_icon.png" alt="" />
+        </div>
+        <div class="form-title" flex items-center m="l20px b30px">
+          <img
+            src="@/assets/uploads/logo.svg"
+            alt=""
+            w="60px"
+            h="52px"
+            m="r20px"
+          />
+          <span class="container-text" text-42px>Soumns-Admin</span>
+        </div>
         <el-form
           ref="ruleFormRef"
           :model="ruleForm"
           :rules="rules"
-          label-width="120px"
           class="demo-ruleForm"
           :size="formSize"
           status-icon
+          w="100%"
         >
-          <el-form-item label="userName" prop="userName">
-            <el-input v-model="ruleForm.userName" />
+          <el-form-item prop="userName">
+            <el-input
+              v-model="ruleForm.userName"
+              placeholder="账号名:admin"
+              size="large"
+            >
+              <template #prefix>
+                <el-icon><User /></el-icon>
+              </template>
+            </el-input>
           </el-form-item>
 
-          <el-form-item label="password" prop="password">
-            <el-input v-model="ruleForm.password" />
+          <el-form-item prop="password">
+            <el-input
+              v-model="ruleForm.password"
+              placeholder="密码:123"
+              size="large"
+            >
+              <template #prefix>
+                <el-icon><Lock /></el-icon>
+              </template>
+            </el-input>
           </el-form-item>
 
           <el-form-item>
-            <el-button
-              size="large"
-              type="primary"
-              @click="submitForm(ruleFormRef)"
-              >Login</el-button
+            <div
+              class="form-button"
+              flex
+              items-center
+              justify-between
+              m="t10px"
             >
-            <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+              <el-button
+                :icon="CircleClose"
+                round
+                @click="resetForm(ruleFormRef)"
+                size="large"
+                w="185px"
+                >重置</el-button
+              >
+              <el-button
+                :icon="UserFilled"
+                round
+                @click="submitForm(ruleFormRef)"
+                size="large"
+                type="primary"
+                w="185px"
+              >
+                登录
+              </el-button>
+            </div>
           </el-form-item>
         </el-form>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+:deep(.el-form-item__content) {
+  margin-bottom: 10px;
+  margin-left: 20px;
+
+  .el-form-item__error {
+    padding-top: 8px;
+    font-size: 12px;
+  }
+}
 .container {
   background-image: url('@/assets/uploads/login_bg.svg');
   background-size: 100% 100%;
@@ -131,8 +199,19 @@ const resetForm = (formEl: FormInstance | undefined) => {
   background-color: #eeeeee;
   @include children-page();
 
-  .container-login-content-left {
-    background: #ff6100;
+  .dark {
+    top: 5%;
+    right: 5%;
+    position: absolute;
+  }
+
+  .container-login-content {
+    background-color: hsla(0deg, 0%, 100%, 0.8);
+
+    .container-login-content-form {
+      background-color: rgba(255, 255, 255, 0.98);
+      box-shadow: 2px 3px 7px rgb(0 0 0 / 20%);
+    }
   }
 }
 </style>
