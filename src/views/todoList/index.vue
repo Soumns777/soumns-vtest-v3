@@ -148,9 +148,6 @@ const isDrag = $ref(false);
   right: 5%;
   position: absolute;
 }
-.container-content {
-  // box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
 
 .container-list-item {
   box-shadow: 0 3px 8px rgba(15, 82, 199, 0.223);
