@@ -30,6 +30,7 @@
     "vue": "^3.2.25",
     "vue-router": "4",
     "vue-vconsole-devtools": "^1.0.5",
+    "vuedraggable": "^4.1.0",
     "webpack": "^5.73.0"
   },
   "devDependencies": {

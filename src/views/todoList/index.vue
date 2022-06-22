@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Calendar, Search, Delete, List } from '@element-plus/icons-vue';
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus';
+import draggable from 'vuedraggable';
 
 import useUser from '@/store/modules/login';
 const store = useUser();
@@ -41,6 +42,9 @@ const delTodo = (id: number): void => {
       });
     });
 };
+
+// 拖拽
+const isDrag = $ref(false);
 </script>
 
 <template>
@@ -56,8 +60,52 @@ const delTodo = (id: number): void => {
       />
     </div>
 
-    <div class="container-content" w="400px" m="t20px" p="20px" box="border">
-      <ul>
+    <div
+      class="container-content"
+      w="400px"
+      m="t20px"
+      p="20px"
+      box="border"
+      bg="#f3f4f6"
+    >
+      <draggable
+        v-model="todoList"
+        @start="isDrag = true"
+        @end="isDrag = false"
+        item-key="item.id"
+        flex
+        items-center
+      >
+        <template #item="{ element }">
+          <div class="container-list-item" flex items-center>
+            <el-checkbox
+              v-model="element.status"
+              size="large"
+              @change="changeStatus(element.status, element.id)"
+            />
+
+            <div
+              flex="1"
+              color="#000"
+              m="l10px"
+              class="yichu"
+              :class="element.status ? 'line-through' : ''"
+            >
+              {{ element.content }}
+            </div>
+
+            <el-button
+              type="danger"
+              :icon="Delete"
+              circle
+              @click="delTodo(element.id)"
+              m="l10px"
+            />
+          </div>
+        </template>
+      </draggable>
+
+      <!-- <ul>
         <li
           v-for="(item, idx) in todoList"
           :key="idx"
@@ -89,7 +137,7 @@ const delTodo = (id: number): void => {
             m="l10px"
           />
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </template>
@@ -101,6 +149,15 @@ const delTodo = (id: number): void => {
   position: absolute;
 }
 .container-content {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  // box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.container-list-item {
+  box-shadow: 0 3px 8px rgba(15, 82, 199, 0.223);
+  border-radius: 20px;
+  padding: 5px 20px 5px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 </style>
